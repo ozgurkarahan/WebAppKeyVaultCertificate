@@ -11,6 +11,9 @@
       "existingKeyVault":{
          "value":"#{existingKeyVault}#"
       },
+      "existingKeyVaultResourceGroupeName":{
+         "value":"#{existingKeyVaultResourceGroupeName}#"
+      },
       "existingKeyVaultSecretName":{
          "value":"#{existingKeyVaultSecretName}#"
       },

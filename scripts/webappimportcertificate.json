@@ -20,6 +20,12 @@
             "description":"Existing Key Vault name with an access policy to allow Microsoft.Web RP to read Key Vault secrets (Checkout README.md for more information)"
          }
       },
+      "existingKeyVaultResourceGroupeName":{
+         "type":"string",
+         "metadata":{
+            "description":"Existing Key Vault resource group name )"
+         }
+      },
       "existingKeyVaultSecretName":{
          "type":"string",
          "metadata":{
@@ -46,7 +52,7 @@
          "apiVersion":"2016-03-01",
          "location":"[parameters('existingAppLocation')]",
          "properties":{
-            "keyVaultId":"[resourceId('Microsoft.KeyVault/vaults', parameters('existingKeyVault'))]",
+            "keyVaultId":"[resourceId(parameters('existingKeyVaultResourceGroupeName'),'Microsoft.KeyVault/vaults', parameters('existingKeyVault'))]",
             "keyVaultSecretName":"[parameters('existingKeyVaultSecretName')]",
             "serverFarmId":"[resourceId('Microsoft.Web/serverfarms', parameters('existingServerFarmName'))]"
          } 
