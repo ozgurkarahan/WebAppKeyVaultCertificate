@@ -2,10 +2,10 @@
    "$schema":"https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
    "contentVersion":"1.0.0.0",
    "parameters":{
-      "existingServerFarmId":{
+      "existingServerFarmName":{
          "type":"string",
          "metadata":{
-            "description":"Existing App Service Plan resource id that contains the App Service being updated"
+            "description":"Existing App Service Plan name that contains the App Service being updated"
          }
       },   
       "certificateName":{
@@ -14,10 +14,10 @@
             "description":"User friendly certificate resource name"
          }
       },
-      "existingKeyVaultId":{
+      "existingKeyVault":{
          "type":"string",
          "metadata":{
-            "description":"Existing Key Vault resource Id with an access policy to allow Microsoft.Web RP to read Key Vault secrets (Checkout README.md for more information)"
+            "description":"Existing Key Vault name with an access policy to allow Microsoft.Web RP to read Key Vault secrets (Checkout README.md for more information)"
          }
       },
       "existingKeyVaultSecretName":{
@@ -30,12 +30,6 @@
          "type":"string",
          "metadata":{
             "description":"Existing App name to use for creating SSL binding. This App should have the hostname assigned as a custom domain"
-         }
-      },
-      "hostname":{
-         "type":"string",
-         "metadata":{
-            "description":"Custom hostname for creating SSL binding. This hostname should already be assigned to the Web App"
          }
       },
       "existingAppLocation":{
@@ -52,10 +46,10 @@
          "apiVersion":"2016-03-01",
          "location":"[parameters('existingAppLocation')]",
          "properties":{
-            "keyVaultId":"[parameters('existingKeyVaultId')]",
+            "keyVaultId":"[resourceId('Microsoft.KeyVault/vaults', parameters('existingKeyVault'))]",
             "keyVaultSecretName":"[parameters('existingKeyVaultSecretName')]",
-            "serverFarmId":"[parameters('existingServerFarmId')]"
-         }
+            "serverFarmId":"[resourceId('Microsoft.Web/serverfarms', parameters('existingServerFarmName'))]"
+         } 
       },
       {
          "type":"Microsoft.Web/sites",

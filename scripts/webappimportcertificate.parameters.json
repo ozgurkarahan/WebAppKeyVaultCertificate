@@ -2,23 +2,20 @@
    "$schema":"http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
    "contentVersion":"1.0.0.0",
    "parameters":{
-      "existingServerFarmId":{
-         "value":"/subscriptions/changeme/resourceGroups/changeme/providers/Microsoft.Web/serverFarms/GEN-UNIQUE"
+      "existingServerFarm":{
+         "value":"#{AppServicePlan}#"
       },
       "certificateName":{
-         "value":"GEN-UNIQUE"
+         "value":"CertifFromKeyVault"
       },
-      "existingKeyVaultId":{
-         "value":"/subscriptions/changeme/resourceGroups/changeme/providers/Microsoft.KeyVault/vaults/GEN-UNIQUE"
+      "existingKeyVault":{
+         "value":"#{existingKeyVault}#"
       },
       "existingKeyVaultSecretName":{
-         "value":"certificatekvsecret"
+         "value":"#{existingKeyVaultSecretName}#"
       },
       "existingWebAppName":{
-         "value":"GEN-UNIQUE"
-      },
-      "hostname":{
-         "value":"appservicecustomdomain.com"
+         "value":"#{webAppName}#"
       },
       "existingAppLocation":{
          "value":"West Europe"
